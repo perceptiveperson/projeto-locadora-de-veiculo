@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="modelo.xhtml">
+
+	<ui:define name="titulo">#{msgs.tituloListarFilial}</ui:define>
+
+	
+	
+
+	<ui:define name="conteudo">
+	
+		<p:commandButton ajax="false" type="push" value="#{msgs.linkNovoFilial}"
+			action="#{filialMB.acaoAbrirInclusao}" immediate="true"
+			image="ui-icon-document" />		
+		
+		<p:dataTable id="tabelaFilial" value="#{filialMB.filiais}" var="fili"
+			rowHover="true" emptyMessage="#{msgs.textoTabelaVazia}.">
+
+			<p:column headerText="#{msgs.campoOpcoes}">
+				<p:panelGrid columns="1">
+					<p:commandLink ajax="false" value="#{msgs.linkAlterar}"
+						action="#{filialMB.acaoAbrirAlteracao(fili.codigo)}" />
+					<p:commandLink ajax="false" value="#{msgs.linkExcluir}"
+						action="#{filialMB.acaoExcluir(fili.codigo)}" />
+				</p:panelGrid>
+			</p:column>
+
+			<p:column headerText="#{msgs.campoCodigoFilial}">
+				<h:outputText value="#{fili.codigo}"></h:outputText>
+			</p:column>
+
+			<p:column headerText="#{msgs.campoNomeFilial}">
+				<h:outputText value="#{fili.nomeFilial}"></h:outputText>
+			</p:column>
+
+			<p:column headerText="#{msgs.campoUfFilial}">
+				<h:outputText value="#{fili.ufFilial}"></h:outputText>
+			</p:column>			
+
+		</p:dataTable>
+
+	</ui:define>
+
+</ui:composition>
+</html>

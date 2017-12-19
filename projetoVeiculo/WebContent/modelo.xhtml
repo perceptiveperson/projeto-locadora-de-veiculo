@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title><ui:insert name="titulo">Título</ui:insert></title>
+	<meta content="text/html; charset=ISO-88591" http-equiv="Content-Type" />
+	<link type="text/css" rel="stylesheet" href="./css/estilo.css" />
+</h:head>
+<h:body>
+	<p:panel id="panel" style="padding: 3px">
+		<header>
+		
+			<h:graphicImage alt="Logo Locadora de Veículos" url="img/header.png" height="80" width="500" />
+
+		</header>
+
+		<nav> 
+		<ui:insert name="nav">
+			<h:form id="formBarraMenu">
+				<p:toolbar styleClass="toolBar" rendered="#{ not empty loginMB.usuario }" >
+					<p:toolbarGroup align="left">					
+						
+						<p:commandButton ajax="false" type="push" value="#{msgs.tituloHome}" action="home.jsf" image="ui-icon-home" />
+							
+						<p:commandButton ajax="false" type="push" value="#{msgs.tituloFilial}" action="#{filialMB.acaoListar}" />
+						
+						<p:commandButton ajax="false" type="push" value="#{msgs.tituloFuncionario}" action="#{funcionarioMB.acaoListar}" />
+						
+					</p:toolbarGroup>
+					<p:toolbarGroup align="right">
+					
+						<h:outputText value="#{msgs.campoUsuario}: #{loginMB.usuario} - " />
+						<p:commandLink immediate="true" value="#{msgs.linkSair}" action="#{loginMB.acaoSair}" />		
+					
+					</p:toolbarGroup>
+				</p:toolbar> 
+		
+			</h:form> 
+		</ui:insert>
+		</nav>
+
+		<div id="content">
+			<h:form id="form" prependId="false" enctype="multipart/form-data">
+
+			<p:messages errorStyle="color: red" infoStyle="color: blue"
+				warnStyle="color: orange" />
+
+			<ui:insert name="cabecalho"></ui:insert>
+			<ui:insert name="conteudo"></ui:insert>
+
+			</h:form>
+		</div>
+	</p:panel>
+</h:body>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="modelo.xhtml">
+
+	<ui:define name="titulo">#{msgs.tituloListarFunc}</ui:define>	
+
+	<ui:define name="conteudo">
+	
+		<p:commandButton ajax="false" type="push" value="#{msgs.linkNovoFunc}"
+			action="#{funcionarioMB.acaoAbrirInclusao}" immediate="true"
+			image="ui-icon-document" />		
+		
+		<p:dataTable id="tabelaFunc" value="#{funcionarioMB.funcionarios}" var="func"
+			rowHover="true" emptyMessage="#{msgs.textoTabelaVazia}.">
+
+			<p:column headerText="#{msgs.campoOpcoes}">
+				<p:panelGrid columns="1">
+					<p:commandLink ajax="false" value="#{msgs.linkAlterar}"
+						action="#{funcionarioMB.acaoAbrirAlteracao(func.codigo)}" />
+					<p:commandLink ajax="false" value="#{msgs.linkExcluir}"
+						action="#{funcionarioMB.acaoExcluir(func.codigo)}" />
+				</p:panelGrid>
+			</p:column>
+
+			<p:column headerText="#{msgs.campoCodigoFunc}">
+				<h:outputText value="#{func.codigo}"></h:outputText>
+			</p:column>
+
+			<p:column headerText="#{msgs.campoNomeFunc}">
+				<h:outputText value="#{func.nomeFunc}"></h:outputText>
+			</p:column>
+
+			<p:column headerText="#{msgs.campoCargoFunc}">
+				<h:outputText value="#{func.cargo}"></h:outputText>
+			</p:column>			
+
+		</p:dataTable>
+
+	</ui:define>
+
+</ui:composition>
+</html>

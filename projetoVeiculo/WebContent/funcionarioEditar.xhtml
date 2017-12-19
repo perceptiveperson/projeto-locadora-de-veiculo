@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="modelo.xhtml">
+
+	
+	<ui:define name="titulo">#{msgs.tituloEditarFunc}</ui:define>
+
+	<ui:define name="conteudo">
+	
+		<h:inputHidden value="#{funcionarioMB.funcionario.codigo}" />
+		
+		<p:panelGrid columns="2">
+			<f:facet name="header">			
+				<h:outputText value="#{msgs.campoCodigoFunc}:" />
+				<h:outputText value="#{funcionarioMB.funcionario.codigo}" />
+			</f:facet>
+			
+			<p:outputLabel for="nome" value="#{msgs.campoNomeFunc}:" />			
+			<p:inputText id="nome" value="#{funcionarioMB.funcionario.nomeFunc}" required="true" />			
+	
+			<p:outputLabel for="cargo" value="#{msgs.campoCargoFunc}:" />
+			<p:inputText id="cargo" value="#{funcionarioMB.funcionario.cargo}" required="true" />	
+			
+			<p:outputLabel for="filial" value="#{msgs.campoFilialFunc}:" />
+			<p:selectOneMenu id="filial"
+				value="#{funcionarioMB.funcionario.filial}" required="true"
+				converter="fil-converter">
+				<f:selectItem itemLabel="#{msgs.campoSelecione}" itemValue="" />
+				<f:selectItems value="#{funcionarioMB.filiais}" var="fil"
+					itemLabel="#{fil.ufFilial} - #{fil.nomeFilial}"></f:selectItems>
+			</p:selectOneMenu>					
+
+			<f:facet name="footer">
+			<h:panelGroup>
+				<p:commandButton ajax="false" value="#{msgs.botaoSalvar}"
+					action="#{funcionarioMB.acaoSalvar}" />
+				-
+				<p:commandButton ajax="false" value="#{msgs.botaoCancelar}"
+					action="#{funcionarioMB.acaoCancelar}" immediate="true" />
+			</h:panelGroup>
+			</f:facet>
+			
+		</p:panelGrid>
+
+	</ui:define>
+
+</ui:composition>
+</html>

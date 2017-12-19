@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="modelo.xhtml">
+
+	
+	<ui:define name="titulo">#{msgs.tituloEditarFilial}</ui:define>
+
+	<ui:define name="conteudo">
+	
+		<h:inputHidden value="#{filialMB.filial.codigo}" />
+		
+		<p:panelGrid columns="2">
+			<f:facet name="header">			
+				<h:outputText value="#{msgs.campoCodigoFilial}:" />
+				<h:outputText value="#{filialMB.filial.codigo}" />
+			</f:facet>
+			
+			<p:outputLabel for="nome" value="#{msgs.campoNomeFilial}:" />			
+			<p:inputText id="nome" value="#{filialMB.filial.nomeFilial}" required="true" />			
+
+			<p:outputLabel for="cnpj" value="#{msgs.campoCnpjFilial}:" />
+			<p:inputText id="cnpj" value="#{filialMB.filial.cnpjFilial}" required="true" />
+
+			<p:outputLabel for="uf" value="#{msgs.campoUfFilial}:" />
+			<p:inputText id="uf" value="#{filialMB.filial.ufFilial}" required="true" />						
+
+			<f:facet name="footer">
+			<h:panelGroup>
+				<p:commandButton ajax="false" value="#{msgs.botaoSalvar}"
+					action="#{filialMB.acaoSalvar}" />
+				-
+				<p:commandButton ajax="false" value="#{msgs.botaoCancelar}"
+					action="#{filialMB.acaoCancelar}" immediate="true" />
+			</h:panelGroup>
+			</f:facet>
+			
+		</p:panelGrid>
+
+	</ui:define>
+
+</ui:composition>
+</html>
